@@ -47,4 +47,13 @@ if st.button("Predict"):
 
     with st.spinner("Predicting..."):
         output = classifier(text)
-        st.write(output)
+        label = output[0]['label']
+        score = output[0]['score']
+
+        # Fancy output with emojis
+        if label == 'POSITIVE':
+            st.success(f"🌟 **Positive Sentiment**: {score:.2%} confidence")
+        elif label == 'NEGATIVE':
+            st.error(f"💔 **Negative Sentiment**: {score:.2%} confidence")
+        else:
+            st.warning(f"🤔 **Neutral/Unknown Sentiment**: {score:.2%} confidence")

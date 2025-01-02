@@ -50,10 +50,13 @@ if st.button("Predict"):
         label = output[0]['label']
         score = output[0]['score']
 
+        # Debugging Output
+        st.write(f"DEBUG: Label = {label}, Score = {score}")
+
         # Fancy output with emojis
-        if label == 'POSITIVE':
+        if 'positive' in label.lower():
             st.success(f"🌟 **Positive Sentiment**: {score:.2%} confidence")
-        elif label == 'NEGATIVE':
+        elif 'negative' in label.lower():
             st.error(f"💔 **Negative Sentiment**: {score:.2%} confidence")
         else:
             st.warning(f"🤔 **Neutral/Unknown Sentiment**: {score:.2%} confidence")
